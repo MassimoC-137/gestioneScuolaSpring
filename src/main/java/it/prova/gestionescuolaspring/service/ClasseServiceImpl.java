@@ -44,4 +44,9 @@ public class ClasseServiceImpl implements ClasseService{
 		classeRepository.delete(classe); 
 	}
 	
+	@Transactional
+	public Classe findByAnnoAndSezione(Integer anno, Character sezione) {
+        return classeRepository.findByAnnoAndSezione(anno, sezione);
+    }
+	
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.prova.gestionescuolaspring.model.Classe;
 import it.prova.gestionescuolaspring.model.Studente;
 import it.prova.gestionescuolaspring.repository.StudenteRepository;
 //import jakarta.persistence.EntityManager;
@@ -42,6 +43,18 @@ public class StudenteServiceImpl implements StudenteService {
 	@Transactional
 	public void deleteStudente(Studente studente) {
 		studenteRepository.delete(studente);
+	}
+
+	@Transactional
+	public void spostaStudenteInClasse(Long id, Classe nuovaClasse) {
+		Studente studente = readStudente(id);
+		if (studente != null) {
+			studente.setClasse(nuovaClasse);
+			studenteRepository.save(studente);
+		} else {
+			throw new RuntimeException("Errore: studente non trovato.");
+		}
+		
 	}
 
 }

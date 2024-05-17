@@ -16,4 +16,6 @@ public interface ClasseService {
 	
 	public void deleteClasse(Classe classe); 
 	
+	Classe findByAnnoAndSezione(Integer anno, Character sezione);
+	
 }

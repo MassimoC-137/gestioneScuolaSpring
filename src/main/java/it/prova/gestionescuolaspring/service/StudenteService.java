@@ -2,6 +2,7 @@ package it.prova.gestionescuolaspring.service;
 
 import java.util.List;
 
+import it.prova.gestionescuolaspring.model.Classe;
 import it.prova.gestionescuolaspring.model.Studente;
 
 public interface StudenteService {
@@ -15,5 +16,7 @@ public interface StudenteService {
 	public void updateStudente(Studente studente); 
 	
 	public void deleteStudente(Studente studente);
+	
+	public void spostaStudenteInClasse(Long id, Classe nuovaClasse);
 
 }
