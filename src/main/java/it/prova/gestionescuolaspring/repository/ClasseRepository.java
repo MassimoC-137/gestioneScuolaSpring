@@ -7,5 +7,5 @@ import it.prova.gestionescuolaspring.model.Classe;
 
 public interface ClasseRepository extends CrudRepository<Classe, Long>, QueryByExampleExecutor<Classe>{
 
-	Classe findByAnnoAndSezione(Integer anno, Character sezione);
+	public Classe findByAnnoAndSezione(Integer anno, Character sezione);
 }
