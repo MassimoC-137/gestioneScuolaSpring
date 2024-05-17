@@ -3,12 +3,14 @@ package it.prova.gestionescuolaspring.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.prova.gestionescuolaspring.model.Classe;
 import it.prova.gestionescuolaspring.repository.ClasseRepository;
 //import jakarta.persistence.EntityManager;
 
+@Service
 public class ClasseServiceImpl implements ClasseService{
 
 	@Autowired 
