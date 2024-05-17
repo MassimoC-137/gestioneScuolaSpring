@@ -46,6 +46,12 @@ public class Classe {
 		this.sezione = sezione;
 		this.studenti = studenti;
 	}
+	
+	public Classe(Integer anno, Character sezione) {
+		super();
+		this.anno = anno;
+		this.sezione = sezione;
+	}
 
 	public Long getId() {
 		return id;

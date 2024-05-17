@@ -14,4 +14,10 @@ public class SequenzaTestService {
 	private ClasseService classeService; 
 	
 	
+	public void testCreateClasse() {
+		
+		classeService.createClasse(new Classe(1, 'A'));
+	}
+	
+	
 }

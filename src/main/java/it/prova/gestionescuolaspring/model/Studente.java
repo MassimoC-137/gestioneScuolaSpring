@@ -55,6 +55,14 @@ public class Studente {
 		this.nascita = nascita;
 		this.classe = classe;
 	}
+	
+	public Studente(String matricola, String nome, String cognome, LocalDate nascita) {
+		super();
+		this.matricola = matricola;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.nascita = nascita;
+	}
 
 	public Long getId() {
 		return id;
