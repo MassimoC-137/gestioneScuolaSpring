@@ -1,6 +1,9 @@
 package it.prova.gestionescuolaspring.service;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +24,7 @@ public class SequenzaTestService {
 		
 		classeService.createClasse(new Classe(1, 'A'));
 		classeService.createClasse(new Classe(1, 'B'));
-		classeService.createClasse(new Classe(1, 'C'));
+		classeService.createClasse(new Classe(1, 'L'));
 		
 		if (classeService.readAllClassi().isEmpty()) 
 			throw new RuntimeException("Errore nella creazione delle classi. Creazione fallita."); 
@@ -32,7 +35,7 @@ public class SequenzaTestService {
 		
 		Classe classe1A = classeService.findByAnnoAndSezione(1, 'A');
         Classe classe1B = classeService.findByAnnoAndSezione(1, 'B');
-        Classe classe1C = classeService.findByAnnoAndSezione(1, 'C');
+        Classe classe1L = classeService.findByAnnoAndSezione(1, 'L');
         
 		studenteService.createStudente(new Studente("M001", "Albert", "Einstein", LocalDate.of(1879, 3, 14), classe1A));
 	    studenteService.createStudente(new Studente("M002", "Marie", "Curie", LocalDate.of(1867, 11, 7), classe1B));
@@ -44,7 +47,7 @@ public class SequenzaTestService {
 	    studenteService.createStudente(new Studente("M008", "Erwin", "Schrödinger", LocalDate.of(1887, 8, 12), classe1A));
 	    studenteService.createStudente(new Studente("M009", "Werner", "Heisenberg", LocalDate.of(1901, 12, 5), classe1B));
 	    studenteService.createStudente(new Studente("M010", "Max", "Planck", LocalDate.of(1858, 4, 23), classe1A));
-	    studenteService.createStudente(new Studente("M011", "Massimo", "Caramanna", LocalDate.of(1994, 9, 6), classe1C));
+	    studenteService.createStudente(new Studente("M011", "Massimo", "Da Vinci", LocalDate.of(1994, 9, 6), classe1L));
 	}
 	
 	public void testSpostaStudenteInClasse() {
@@ -59,6 +62,38 @@ public class SequenzaTestService {
 	    }
 	}
 	
-
+	public List<Studente> testReadAllStudenti() {
+		List<Studente> studenti = studenteService.readAllStudenti();
+        if (studenti.isEmpty()) {
+            throw new RuntimeException("Nessuno studente trovato.");
+        }
+        studenti.forEach(studente -> System.out.println(studente.getNome() + " " + studente.getCognome())); //utilizzo Lamba expression
+        return studenti;
+	}
+	
+	public List<Classe> testReadAllClassi() {
+		List<Classe> classi = classeService.readAllClassi();
+        if (classi.isEmpty()) {
+            throw new RuntimeException("Nessuna classe trovata.");
+        }
+        classi.forEach(classe -> System.out.println("Classe " + classe.getAnno() + classe.getSezione())); //utilizzo Lamba expression
+        return classi;
+	}
+	
+	public Map<Classe, List<Studente>> testReadAllClassiConStudenti() {
+        Map<Classe, List<Studente>> classiConStudenti = new HashMap<>();
+        List<Classe> classi = testReadAllClassi();
+        for (Classe classe : classi) {
+            List<Studente> studenti = studenteService.findByClasse(classe);
+            classiConStudenti.put(classe, studenti);
+            System.out.println("Classe " + classe.getAnno() + classe.getSezione() + ":");
+            if (studenti.isEmpty()) {
+                System.out.println("  Nessuno studente in questa classe.");
+            } else {
+                studenti.forEach(studente -> System.out.println("  " + studente.getNome() + " " + studente.getCognome()));
+            }
+        }
+        return classiConStudenti;
+    }
 	
 }

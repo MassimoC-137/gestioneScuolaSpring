@@ -56,5 +56,10 @@ public class StudenteServiceImpl implements StudenteService {
 		}
 		
 	}
+	
+	@Transactional
+	public List<Studente> findByClasse(Classe classe) {
+        return studenteRepository.findByClasse(classe);
+    }
 
 }
