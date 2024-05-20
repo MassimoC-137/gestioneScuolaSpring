@@ -24,9 +24,28 @@ public class GestionescuolaspringApplication implements CommandLineRunner{
 		
 		sequenzaTestService.testCreateClasse();
 		sequenzaTestService.testReadAllClassi(); 
+		
 		sequenzaTestService.testCreateStudente();
 		sequenzaTestService.testReadAllStudenti();
+		
 		sequenzaTestService.testReadAllClassiConStudenti();
+		
+		sequenzaTestService.testFindByClasse();
+		sequenzaTestService.testReadAllClassiConStudenti();
+		
+//		sequenzaTestService.testSpostaStudenteInClasse();
+//		sequenzaTestService.testReadAllClassiConStudenti();
+		
+		sequenzaTestService.testUpdateClasse();
+		
+		sequenzaTestService.testUpdateStudente();
+		sequenzaTestService.testReadAllClassiConStudenti();
+		
+		sequenzaTestService.testDeleteStudente();
+		
+		sequenzaTestService.testDeleteClasse();
+		sequenzaTestService.testReadAllClassiConStudenti();
+		
 		
 		
 		

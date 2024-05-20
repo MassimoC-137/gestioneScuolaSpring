@@ -45,17 +45,21 @@ public class StudenteServiceImpl implements StudenteService {
 		studenteRepository.delete(studente);
 	}
 
+//	@Transactional
+//	public void spostaStudenteInClasse(Long studenteId, Classe nuovaClasse) {
+//        Studente studente = studenteRepository.findById(studenteId).orElse(null);
+//        if (studente != null) {
+//            studente.setClasse(nuovaClasse);
+//            studenteRepository.save(studente);
+//        } else {
+//            throw new RuntimeException("Studente non trovato");
+//        }
+//    }
+
 	@Transactional
-	public void spostaStudenteInClasse(Long id, Classe nuovaClasse) {
-		Studente studente = readStudente(id);
-		if (studente != null) {
-			studente.setClasse(nuovaClasse);
-			studenteRepository.save(studente);
-		} else {
-			throw new RuntimeException("Errore: studente non trovato.");
-		}
-		
-	}
+    public Studente findById(Long id) {
+        return studenteRepository.findById(id).orElse(null);
+    }
 	
 	@Transactional
 	public List<Studente> findByClasse(Classe classe) {
